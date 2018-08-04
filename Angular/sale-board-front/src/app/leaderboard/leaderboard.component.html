@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      <div class="card shadow-sm mb-5 bg-white rounded" *ngFor="let user of transform(allUsers)">
+        <div class="card-header">
+          {{user.firstName}}
+          {{user.lastName}}
+        </div>
+
+
+        <div class="card-body">
+          <div class="chlopek" [ngStyle]="{'margin-left': user.experience.percentToNextLevel - 3 + '%'}">
+            <img src="http://plucinski.io/aa/chlopek.gif">
+          </div>
+          <p>
+          <ngb-progressbar placement="bottom"
+                           ngbTooltip="{{user.experience.expTotalEarned}}  / {{user.experience.expToNextLevel}}"
+                           value="{{user.experience.percentToNextLevel}}">
+            <i>{{user.experience.percentToNextLevel}}%</i>
+          </ngb-progressbar>
+          </p>
+          <span>| Level - {{user.experience.level}} |</span>
+          <span>| Attack - {{user.experience.attack}} |</span>
+          <span>| Defence - {{user.experience.defence}} |</span>
+          <span>| Knowledge - {{user.experience.knowledge}} |</span>
+          <span>| Speed Attack - {{user.experience.speedAttack}} |</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

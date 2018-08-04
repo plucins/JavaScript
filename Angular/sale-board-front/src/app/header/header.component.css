@@ -1,0 +1,41 @@
+.navbar-nav {
+  flex-direction: row;
+}
+
+.nav-link {
+  padding-right: .5rem !important;
+  padding-left: .5rem !important;
+}
+
+.ml-auto .dropdown-menu {
+  left: auto !important;
+  right: 0px;
+}
+
+.lvlHeader {
+  color: red;
+  font-weight: bold;
+  padding: 5px;
+}
+img {
+  height: 25px;
+  width: 25px;
+  margin-bottom: 3px;
+}
+
+.modal-body > .container p {
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.modal-body > .container span {
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.modal-body > .container button {
+  width: 35px;
+  height: 35px;
+}

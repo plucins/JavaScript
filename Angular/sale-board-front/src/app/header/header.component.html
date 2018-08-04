@@ -1,0 +1,160 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <div class="container ">
+
+    <div class="col-md-12">
+      <div class="row">
+        <a class="navbar-brand" routerLink="/">Navbar</a>
+
+
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item" ngClass="active: isActive('/register')">
+              <a routerLink="/register" *ngIf="isAuthenticated()" class="nav-link">Register</a>
+            </li>
+            <li class="nav-item" ngClass="active: isActive('/leaderboard')">
+              <a routerLink="/leaderboard" *ngIf="isAuthenticated()" class="nav-link">Leaderboard</a>
+            </li>
+            <li class="nav-item" ngClass="active: isActive('/leaderboard')">
+              <a routerLink="/leaderboard" *ngIf="isAuthenticated() && userRole() == 'ANALYST'"
+                 class="nav-link">Raports</a>
+            </li>
+            <li class="nav-item" ngClass="active: isActive('/leaderboard')">
+              <a routerLink="/charts" *ngIf="isAuthenticated()" class="nav-link">Charts</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+
+            <li *ngIf="user?.seller.experience.pointsToAdd > 0" class="nav-item mt-2"
+                (click)="openAddPointsModal(addPointsModal)">
+              <img src="http://plucinski.io/aa/x.gif" style="width: 60px; height: 35px;">
+            </li>
+            <li class="nav-item dropdown ">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false"><span *ngIf="!isAuthenticated()">Profile</span>
+                <span *ngIf="isAuthenticated()">{{user.seller.firstName}} {{user.seller.lastName}}</span></a>
+
+
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" *ngIf="!isAuthenticated()" routerLink="/user-register">Register | Login</a>
+                <a class="dropdown-item" *ngIf="isAuthenticated()" (click)="openEditUserModal(editUserModal)">Edit
+                  User</a>
+                <a class="dropdown-item" *ngIf="isAuthenticated()" (click)="logout()">Logout</a>
+              </div>
+            </li>
+            <li class="mt-2">
+              <span *ngIf="isAuthenticated()" class="bg-warning rounded p-1 mr-3 lvlHeader"><img
+                src="https://cdn2.iconfinder.com/data/icons/free-mobile-icon-kit/64/Swords.png">{{user.seller.experience.level}}</span>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<ng-template #editUserModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit User</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="form-group">
+      <label>{{user.seller.email}}</label>
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="user.seller.firstName" id="firstName"
+             aria-describedby="emailHelp"
+             placeholder="First Name">
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="user.seller.lastName" id="lastName"
+             aria-describedby="emailHelp"
+             placeholder="Last Name">
+    </div>
+
+
+    <button type="submit"
+            class="btn btn-primary float-right" (click)="updateUser(); modalRef.hide()">Submit
+    </button>
+
+  </div>
+</ng-template>
+
+<ng-template #addPointsModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add Points</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <div class="col-sm-12">
+
+        <div class="row p-1">
+        <div class=" col-sm-6" >
+          <span>Attack: {{user.seller.experience.attack}}</span>
+        </div>
+        <div class="col-sm-6" (click)="addPoints('attack')" *ngIf="user.seller.experience.pointsToAdd > 0">
+          <button class="btn-dark btn">+</button>
+        </div>
+      </div>
+        <div class="row p-1">
+          <div class=" col-sm-6" >
+            <span>Defence: {{user.seller.experience.defence}}</span>
+          </div>
+          <div class="col-sm-6" (click)="addPoints('defence')" *ngIf="user.seller.experience.pointsToAdd > 0">
+            <button class="btn-dark btn">+</button>
+          </div>
+        </div>
+        <div class="row p-1">
+        <div class=" col-sm-6" >
+          <span>Knowledge: {{user.seller.experience.knowledge}}</span>
+        </div>
+        <div class="col-sm-6" (click)="addPoints('knowledge')" *ngIf="user.seller.experience.pointsToAdd > 0">
+          <button class="btn-dark btn">+</button>
+        </div>
+      </div>
+
+        <div class="row p-1">
+          <div class=" col-sm-6">
+            <span>Speed Attack: {{user.seller.experience.speedAttack}}</span>
+          </div>
+          <div class="col-sm-6" (click)="addPoints('speedAttack')" *ngIf="user.seller.experience.pointsToAdd > 0">
+            <button class="btn-dark btn">+</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card mt-4 mb-4">
+        <div class="card-body">
+          <span>Available Points: {{user.seller.experience.pointsToAdd}}</span>
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <button type="submit"
+            class="btn btn-primary float-right" (click)="updatePoints(); modalRef.hide()">Submit
+    </button>
+
+  </div>
+</ng-template>

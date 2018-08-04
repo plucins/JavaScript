@@ -1,0 +1,25 @@
+.nav-item .active {
+  background-color: #F7F7F7;
+  color: black;
+  border: 2px solid #343A40;
+}
+
+.nav-link {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  color: #CCCEC6;
+}
+
+.nav-link:hover {
+  background-color: #343A40; /* Green */
+  color: white;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)   {
+  border-left: 5px solid #a94442; /* red */
+}
+

@@ -1,0 +1,17 @@
+<div *ngIf="authUser != null">
+  <div class="card shadow-sm mb-5 bg-white rounded">
+    <div class="card-header">
+      Last Added
+    </div>
+
+
+    <div class="card-body">
+      <div *ngFor="let policy of sidebarService.policies">
+        <p class="p-2">{{policy.seller.firstName}} {{policy.seller.lastName}} {{policy.policyValue}} zł
+          ({{policy.brand}})</p>
+        <hr>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,196 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+
+      <div *ngIf="authUser !== null">
+
+        <div class="mb-5">
+          <!-- Nav pills -->
+          <ul class="nav nav-pills  nav-fill card-header justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="pill" href="#today">Today</a>
+            </li>
+            <li class="nav-item ml-3">
+              <a class="nav-link" data-toggle="pill" href="#sday">7 Days</a>
+            </li>
+            <li class="nav-item ml-3">
+              <a class="nav-link" data-toggle="pill" href="#tday">30 Days</a>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane container active" id="today">
+
+              <div class="col mt-3">
+
+                <table class="table">
+                  <thead class="thead-light">
+                  <tr>
+                    <th>#</th>
+                    <th>Policy Number</th>
+                    <th>Policy Value</th>
+                    <th>Phone Number</th>
+                    <th>Brand</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngFor="let p of todayPolicies; let i = index">
+                  <tr>
+                    <td>{{i + 1}}</td>
+                    <td>{{p?.policyNumber}}</td>
+                    <td>{{p?.policyValue}}</td>
+                    <td>{{p?.customer.phoneNumber}}</td>
+                    <td>{{p?.brand}}</td>
+                    <td>
+                      <i class="fa fa-pencil" aria-hidden="true" (click)="openEditPolicyModal(editPolicyModal, p)"></i>
+                      <i class="fa fa-trash-o" aria-hidden="true" (click)="removePolicy(p)"></i>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+
+              </div>
+            </div>
+
+            <div class="tab-pane container fade" id="sday">
+              <div class="col mt-3">
+
+                <table class="table">
+                  <thead class="thead-light">
+                  <tr>
+                    <th>#</th>
+                    <th>Policy Number</th>
+                    <th>Policy Value</th>
+                    <th>Phone Number</th>
+                    <th>Brand</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngFor="let p of sevenDaysPolicies; let i = index">
+                  <tr>
+                    <td>{{i + 1}}</td>
+                    <td>{{p?.policyNumber}}</td>
+                    <td>{{p?.policyValue}}</td>
+                    <td>{{p?.customer.phoneNumber}}</td>
+                    <td>{{p?.brand}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="tab-pane container fade" id="tday">
+              <div class="col mt-3">
+                <table class="table">
+                  <thead class="thead-light">
+                  <tr>
+                    <th>#</th>
+                    <th>Policy Number</th>
+                    <th>Policy Value</th>
+                    <th>Phone Number</th>
+                    <th>Brand</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngFor="let p of thirtyDaysPolicies; let i = index">
+                  <tr>
+                    <td>{{i + 1}}</td>
+                    <td>{{p?.policyNumber}}</td>
+                    <td>{{p?.policyValue}}</td>
+                    <td>{{p?.customer.phoneNumber}}</td>
+                    <td>{{p?.brand}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <div *ngIf="authUser === null">
+        <div class="card shadow-sm mb-5 bg-white rounded">
+          <div class="tab-content">
+            <div class="tab-pane container active" id="login">
+
+              <div class="col mt-3">
+                <h4>User info</h4>
+                <hr>
+                <p>Page required to be registered</p>
+                <p>use form to <a href="/user-register">register</a> account</p>
+                <p>or <a href="/user-register">login</a> if You have already</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<ng-template #editPolicyModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit Policy</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+
+    <div class="form-group">
+      <label for="policyValue">Policy Value</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">PLN</span>
+        </div>
+        <input required type="text" name="policyValue" [(ngModel)]="policyToUpdate.policyValue" id="policyValue"
+               placeholder="Policy Value" class="form-control" aria-label="Amount (to the nearest dollar)">
+        <div class="input-group-append">
+          <span class="input-group-text">.00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="policyNumber">Policy Number</label>
+      <input required type="text" class="form-control" [(ngModel)]="policyToUpdate.policyNumber" id="policyNumber"
+             aria-describedby="policyNumber"
+             placeholder="Policy Number">
+    </div>
+
+
+    <div class="form-group">
+      <label for="customerPhoneNumber">Phone Number</label>
+      <input required type="text" class="form-control" [(ngModel)]="policyToUpdate.customer.phoneNumber"
+             id="customerPhoneNumber" aria-describedby="customerPhoneNumber"
+             placeholder="Phone Number">
+    </div>
+
+    <div class="form-group">
+      <label for="policyNumber">Policy Brand</label>
+      <select required class="form-control" [(ngModel)]="policyToUpdate.brand" id="brand" name="brand">
+        <option>Brand1</option>
+        <option>Brand2</option>
+        <option>Brand3</option>
+        <option>Brand4</option>
+      </select>
+    </div>
+
+
+    <button type="submit"
+            class="btn btn-primary float-right" (click)="updatePolicy(); modalRef.hide()">Submit
+    </button>
+
+  </div>
+</ng-template>
+
