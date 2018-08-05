@@ -20,6 +20,8 @@ import {SidebarService} from './sidebar/sidebar.service';
 import {HeaderService} from './header/header.service';
 import {ChartsComponent} from './charts/charts.component';
 import {ChartsService} from './charts/charts.service';
+import { UsersManagementComponent } from './users-management/users-management.component';
+import {UsersManagementService} from './users-management/users-management.service';
 
 
 
@@ -28,7 +30,8 @@ const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'charts', component: ChartsComponent},
   {path: 'leaderboard', component: LeaderboardComponent},
-  {path: 'user-register', component: UserRegisterComponent}
+  {path: 'user-register', component: UserRegisterComponent},
+  {path: 'users', component: UsersManagementComponent}
 ];
 
 @NgModule({
@@ -40,7 +43,8 @@ const appRoutes: Routes = [
     LeaderboardComponent,
     SidebarComponent,
     UserRegisterComponent,
-    ChartsComponent
+    ChartsComponent,
+    UsersManagementComponent
   ],
   imports: [
     BrowserModule,
@@ -51,12 +55,17 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthServiceService,
+  providers: [
+    AuthServiceService,
     HeaderComponent, {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }, SidebarService, HeaderService, ChartsService],
+    }, SidebarService,
+    HeaderService,
+    ChartsService,
+    UsersManagementService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

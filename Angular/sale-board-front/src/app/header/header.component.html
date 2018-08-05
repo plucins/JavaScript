@@ -27,6 +27,10 @@
             <li class="nav-item" ngClass="active: isActive('/leaderboard')">
               <a routerLink="/charts" *ngIf="isAuthenticated()" class="nav-link">Charts</a>
             </li>
+            <li class="nav-item" ngClass="active: isActive('/users')">
+              <a routerLink="/users" *ngIf="isAuthenticated() && userRole() == 'ADMIN'"
+                 class="nav-link">Users</a>
+            </li>
           </ul>
           <ul class="navbar-nav ml-auto">
 
