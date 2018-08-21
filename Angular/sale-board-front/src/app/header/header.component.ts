@@ -73,6 +73,27 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  removePoints(type: string) {
+    switch (type) {
+      case 'attack':
+        this.user.seller.experience.pointsToAdd++;
+        this.user.seller.experience.attack--;
+        break;
+      case 'defence':
+        this.user.seller.experience.pointsToAdd++;
+        this.user.seller.experience.defence--;
+        break;
+      case 'knowledge':
+        this.user.seller.experience.pointsToAdd++;
+        this.user.seller.experience.knowledge--;
+        break;
+      case 'speedAttack':
+        this.user.seller.experience.pointsToAdd++;
+        this.user.seller.experience.speedAttack--;
+        break;
+    }
+  }
+
   updatePoints() {
     this.http.put('http://localhost:8080/api/exp/points', this.user.seller.experience).subscribe(resp => {
       console.log(resp);

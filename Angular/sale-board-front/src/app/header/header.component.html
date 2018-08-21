@@ -34,10 +34,17 @@
           </ul>
           <ul class="navbar-nav ml-auto">
 
+
+            <li *ngIf="user?.seller.experience.pointsToAdd < 0" (click)="openAddPointsModal(addPointsModal)">
+              <img src="http://plucinski.io/aa/z.gif" style="width: 40px; height: 40px;">
+            </li>
+
             <li *ngIf="user?.seller.experience.pointsToAdd > 0" class="nav-item mt-2"
                 (click)="openAddPointsModal(addPointsModal)">
               <img src="http://plucinski.io/aa/x.gif" style="width: 60px; height: 35px;">
             </li>
+
+
             <li class="nav-item dropdown ">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false"><span *ngIf="!isAuthenticated()">Profile</span>
@@ -80,13 +87,11 @@
 
     <div class="form-group">
       <input type="text" class="form-control" [(ngModel)]="user.seller.firstName" id="firstName"
-             aria-describedby="emailHelp"
              placeholder="First Name">
     </div>
 
     <div class="form-group">
       <input type="text" class="form-control" [(ngModel)]="user.seller.lastName" id="lastName"
-             aria-describedby="emailHelp"
              placeholder="Last Name">
     </div>
 
@@ -110,29 +115,38 @@
       <div class="col-sm-12">
 
         <div class="row p-1">
-        <div class=" col-sm-6" >
-          <span>Attack: {{user.seller.experience.attack}}</span>
+          <div class=" col-sm-6">
+            <span>Attack: {{user.seller.experience.attack}}</span>
+          </div>
+          <div class="col-sm-6" (click)="addPoints('attack')" *ngIf="user.seller.experience.pointsToAdd > 0">
+            <button class="btn-dark btn">+</button>
+          </div>
+          <div class="col-sm-6" (click)="removePoints('attack')" *ngIf="user.seller.experience.attack > 0">
+            <button class="btn-dark btn">-</button>
+          </div>
         </div>
-        <div class="col-sm-6" (click)="addPoints('attack')" *ngIf="user.seller.experience.pointsToAdd > 0">
-          <button class="btn-dark btn">+</button>
-        </div>
-      </div>
         <div class="row p-1">
-          <div class=" col-sm-6" >
+          <div class=" col-sm-6">
             <span>Defence: {{user.seller.experience.defence}}</span>
           </div>
           <div class="col-sm-6" (click)="addPoints('defence')" *ngIf="user.seller.experience.pointsToAdd > 0">
             <button class="btn-dark btn">+</button>
           </div>
+          <div class="col-sm-6" (click)="removePoints('defence')" *ngIf="user.seller.experience.defence > 0">
+            <button class="btn-dark btn">-</button>
+          </div>
         </div>
         <div class="row p-1">
-        <div class=" col-sm-6" >
-          <span>Knowledge: {{user.seller.experience.knowledge}}</span>
+          <div class=" col-sm-6">
+            <span>Knowledge: {{user.seller.experience.knowledge}}</span>
+          </div>
+          <div class="col-sm-6" (click)="addPoints('knowledge')" *ngIf="user.seller.experience.pointsToAdd > 0">
+            <button class="btn-dark btn">+</button>
+          </div>
+          <div class="col-sm-6" (click)="removePoints('knowledge')" *ngIf="user.seller.experience.knowledge > 0">
+            <button class="btn-dark btn">-</button>
+          </div>
         </div>
-        <div class="col-sm-6" (click)="addPoints('knowledge')" *ngIf="user.seller.experience.pointsToAdd > 0">
-          <button class="btn-dark btn">+</button>
-        </div>
-      </div>
 
         <div class="row p-1">
           <div class=" col-sm-6">
@@ -140,6 +154,9 @@
           </div>
           <div class="col-sm-6" (click)="addPoints('speedAttack')" *ngIf="user.seller.experience.pointsToAdd > 0">
             <button class="btn-dark btn">+</button>
+          </div>
+          <div class="col-sm-6" (click)="removePoints('speedAttack')" *ngIf="user.seller.experience.speedAttack > 0">
+            <button class="btn-dark btn">-</button>
           </div>
         </div>
 

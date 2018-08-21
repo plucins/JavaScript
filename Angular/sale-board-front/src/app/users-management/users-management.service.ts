@@ -11,4 +11,8 @@ export class UsersManagementService {
   getAllUsers(): Observable<Seller[]> {
    return this.http.get<Seller[]>('http://localhost:8080/api/seller')
   }
+
+  getAvailableRoles(): Observable<string[]> {
+    return this.http.get<string[]>('http://localhost:8080/api/seller/roles');
+  }
 }

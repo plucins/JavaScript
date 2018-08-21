@@ -18,8 +18,12 @@
           <td>{{user.firstName}}</td>
           <td>{{user.lastName}}</td>
           <td>{{user.email}}</td>
+          <td>
+            <select [(ngModel)]="user.role">
+              <option *ngFor="let r of roles">{{r}}</option>
+            </select>
+          </td>
           <td>{{user.role}}</td>
-          <td>action</td>
         </tr>
         </tbody>
       </table>
