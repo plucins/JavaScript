@@ -15,4 +15,8 @@ export class UsersManagementService {
   getAvailableRoles(): Observable<string[]> {
     return this.http.get<string[]>('http://localhost:8080/api/seller/roles');
   }
+
+  updateUser(user: Seller): Observable<Seller> {
+    return this.http.put<Seller>('http://localhost:8080/api/seller',user);
+  }
 }

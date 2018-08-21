@@ -23,7 +23,9 @@
               <option *ngFor="let r of roles">{{r}}</option>
             </select>
           </td>
-          <td>{{user.role}}</td>
+          <td>
+          <i (click)="updateUser(user)" class="fa fa-check-circle" aria-hidden="true" style="font-size: 20px; margin-top: 10px;"></i>
+          </td>
         </tr>
         </tbody>
       </table>

@@ -31,5 +31,12 @@ export class UsersManagementComponent implements OnInit {
     })
   }
 
+  updateUser(user) {
+    console.log(user);
+    this.usersService.updateUser(user).subscribe(resp => {
+      console.log(resp);
+    });
+  }
+
 
 }
