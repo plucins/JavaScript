@@ -53,8 +53,8 @@
 
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" *ngIf="!isAuthenticated()" routerLink="/user-register">Register | Login</a>
-                <a class="dropdown-item" *ngIf="isAuthenticated()" (click)="openEditUserModal(editUserModal)">Edit
-                  User</a>
+                <a class="dropdown-item" *ngIf="isAuthenticated()" (click)="openEditUserModal(editUserModal)">Edit User</a>
+                <a class="dropdown-item" *ngIf="isAuthenticated()" href="/achievements">Achievements</a>
                 <a class="dropdown-item" *ngIf="isAuthenticated()" (click)="logout()">Logout</a>
               </div>
             </li>
@@ -118,33 +118,27 @@
           <div class=" col-sm-6">
             <span>Attack: {{user.seller.experience.attack}}</span>
           </div>
-          <div class="col-sm-6" (click)="addPoints('attack')" *ngIf="user.seller.experience.pointsToAdd > 0">
-            <button class="btn-dark btn">+</button>
-          </div>
-          <div class="col-sm-6" (click)="removePoints('attack')" *ngIf="user.seller.experience.attack > 0">
-            <button class="btn-dark btn">-</button>
+          <div class="col-sm-6">
+            <button (click)="addPoints('attack')" *ngIf="user.seller.experience.pointsToAdd > 0" class="btn-dark btn">+</button>
+            <button (click)="removePoints('attack')" *ngIf="user.seller.experience.attack > 0" class="btn-dark btn">-</button>
           </div>
         </div>
         <div class="row p-1">
           <div class=" col-sm-6">
             <span>Defence: {{user.seller.experience.defence}}</span>
           </div>
-          <div class="col-sm-6" (click)="addPoints('defence')" *ngIf="user.seller.experience.pointsToAdd > 0">
-            <button class="btn-dark btn">+</button>
-          </div>
-          <div class="col-sm-6" (click)="removePoints('defence')" *ngIf="user.seller.experience.defence > 0">
-            <button class="btn-dark btn">-</button>
+          <div class="col-sm-6">
+            <button (click)="addPoints('defence')" *ngIf="user.seller.experience.pointsToAdd > 0" class="btn-dark btn">+</button>
+            <button (click)="removePoints('defence')" *ngIf="user.seller.experience.defence > 0" class="btn-dark btn">-</button>
           </div>
         </div>
         <div class="row p-1">
           <div class=" col-sm-6">
             <span>Knowledge: {{user.seller.experience.knowledge}}</span>
           </div>
-          <div class="col-sm-6" (click)="addPoints('knowledge')" *ngIf="user.seller.experience.pointsToAdd > 0">
-            <button class="btn-dark btn">+</button>
-          </div>
-          <div class="col-sm-6" (click)="removePoints('knowledge')" *ngIf="user.seller.experience.knowledge > 0">
-            <button class="btn-dark btn">-</button>
+          <div class="col-sm-6">
+            <button (click)="addPoints('knowledge')" *ngIf="user.seller.experience.pointsToAdd > 0" class="btn-dark btn">+</button>
+            <button (click)="removePoints('knowledge')" *ngIf="user.seller.experience.knowledge > 0" class="btn-dark btn">-</button>
           </div>
         </div>
 
@@ -152,11 +146,9 @@
           <div class=" col-sm-6">
             <span>Speed Attack: {{user.seller.experience.speedAttack}}</span>
           </div>
-          <div class="col-sm-6" (click)="addPoints('speedAttack')" *ngIf="user.seller.experience.pointsToAdd > 0">
-            <button class="btn-dark btn">+</button>
-          </div>
-          <div class="col-sm-6" (click)="removePoints('speedAttack')" *ngIf="user.seller.experience.speedAttack > 0">
-            <button class="btn-dark btn">-</button>
+          <div class="col-sm-6">
+            <button (click)="addPoints('speedAttack')" *ngIf="user.seller.experience.pointsToAdd > 0" class="btn-dark btn">+</button>
+            <button (click)="removePoints('speedAttack')" *ngIf="user.seller.experience.speedAttack > 0" class="btn-dark btn">-</button>
           </div>
         </div>
 

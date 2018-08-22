@@ -22,6 +22,7 @@ import {ChartsComponent} from './charts/charts.component';
 import {ChartsService} from './charts/charts.service';
 import { UsersManagementComponent } from './users-management/users-management.component';
 import {UsersManagementService} from './users-management/users-management.service';
+import { AchievementsComponent } from './achievements/achievements.component';
 
 
 
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
   {path: 'charts', component: ChartsComponent},
   {path: 'leaderboard', component: LeaderboardComponent},
   {path: 'user-register', component: UserRegisterComponent},
+  {path: 'achievements', component: AchievementsComponent},
   {path: 'users', component: UsersManagementComponent}
 ];
 
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
     SidebarComponent,
     UserRegisterComponent,
     ChartsComponent,
-    UsersManagementComponent
+    UsersManagementComponent,
+    AchievementsComponent
   ],
   imports: [
     BrowserModule,
